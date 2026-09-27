@@ -1,0 +1,144 @@
+{
+  "budget": {
+    "timings": [
+      {
+        "metric": "First Contentful Paint",
+        "budget": 1500,
+        "warning": 1000
+      },
+      {
+        "metric": "Largest Contentful Paint",
+        "budget": 2500,
+        "warning": 1800
+      },
+      {
+        "metric": "First Input Delay",
+        "budget": 100,
+        "warning": 50
+      },
+      {
+        "metric": "Cumulative Layout Shift",
+        "budget": 0.1,
+        "warning": 0.05
+      },
+      {
+        "metric": "Time to Interactive",
+        "budget": 3800,
+        "warning": 3000
+      },
+      {
+        "metric": "Total Blocking Time",
+        "budget": 300,
+        "warning": 200
+      }
+    ],
+    "resources": [
+      {
+        "resourceType": "image",
+        "budget": 500,
+        "warning": 300,
+        "description": "Total image payload in KB"
+      },
+      {
+        "resourceType": "script",
+        "budget": 200,
+        "warning": 150,
+        "description": "Total JavaScript in KB"
+      },
+      {
+        "resourceType": "stylesheet",
+        "budget": 50,
+        "warning": 30,
+        "description": "Total CSS in KB"
+      },
+      {
+        "resourceType": "font",
+        "budget": 100,
+        "warning": 50,
+        "description": "Total font files in KB"
+      },
+      {
+        "resourceType": "total",
+        "budget": 1000,
+        "warning": 700,
+        "description": "Total page size in KB"
+      }
+    ],
+    "resourceCounts": [
+      {
+        "resourceType": "image",
+        "budget": 20,
+        "warning": 15,
+        "description": "Maximum number of image requests"
+      },
+      {
+        "resourceType": "script",
+        "budget": 10,
+        "warning": 5,
+        "description": "Maximum number of JavaScript files"
+      },
+      {
+        "resourceType": "stylesheet",
+        "budget": 5,
+        "warning": 3,
+        "description": "Maximum number of CSS files"
+      },
+      {
+        "resourceType": "total",
+        "budget": 50,
+        "warning": 30,
+        "description": "Total number of requests"
+      }
+    ],
+    "imageOptimization": {
+      "maxFileSize": {
+        "thumbnail": 20,
+        "small": 50,
+        "medium": 150,
+        "large": 300,
+        "hero": 500
+      },
+      "formats": ["webp", "avif"],
+      "fallbackFormat": "jpg",
+      "compressionQuality": 0.85,
+      "progressiveJPEG": true
+    },
+    "caching": {
+      "images": {
+        "maxAge": 31536000,
+        "immutable": true
+      },
+      "scripts": {
+        "maxAge": 86400,
+        "immutable": false
+      },
+      "stylesheets": {
+        "maxAge": 86400,
+        "immutable": false
+      }
+    },
+    "networkConditions": {
+      "slow4G": {
+        "download": 400,
+        "upload": 400,
+        "latency": 2000
+      },
+      "fast4G": {
+        "download": 1500,
+        "upload": 750,
+        "latency": 100
+      },
+      "3G": {
+        "download": 1.6,
+        "upload": 750,
+        "latency": 300
+      }
+    }
+  },
+  "thresholds": {
+    "performance": 90,
+    "accessibility": 95,
+    "bestPractices": 90,
+    "seo": 95
+  }
+}

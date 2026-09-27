@@ -1,0 +1,188 @@
+:root {
+  --magic-bento-glow-color: 0, 102, 161;
+  --magic-bento-border-color: rgba(0, 102, 161, 0.3);
+  --magic-bento-background: rgba(255, 255, 255, 0.95);
+  --magic-bento-background-dark: rgba(17, 24, 39, 0.95);
+}
+
+.magic-bento-grid {
+  display: grid;
+  gap: 1rem;
+  width: 100%;
+}
+
+.magic-bento-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  min-height: 180px;
+  width: 100%;
+  padding: 1.5rem;
+  border-radius: 16px;
+  border: 1px solid var(--magic-bento-border-color);
+  background: var(--magic-bento-background);
+  font-weight: 300;
+  overflow: hidden;
+  transition: all 0.3s ease;
+
+  --glow-x: 50%;
+  --glow-y: 50%;
+  --glow-intensity: 0;
+  --glow-radius: 200px;
+  --glow-color: var(--magic-bento-glow-color);
+}
+
+.dark .magic-bento-card {
+  background: var(--magic-bento-background-dark);
+  border-color: rgba(0, 102, 161, 0.2);
+}
+
+.magic-bento-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+}
+
+.dark .magic-bento-card:hover {
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Border glow effect */
+.magic-bento-card--border-glow::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 4px;
+  background: radial-gradient(
+    var(--glow-radius) circle at var(--glow-x) var(--glow-y),
+    rgba(var(--glow-color), calc(var(--glow-intensity) * 0.8)) 0%,
+    rgba(var(--glow-color), calc(var(--glow-intensity) * 0.4)) 30%,
+    transparent 60%
+  );
+  border-radius: inherit;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.magic-bento-card--border-glow:hover::after {
+  opacity: 1;
+}
+
+.magic-bento-card--border-glow:hover {
+  box-shadow:
+    0 8px 25px rgba(0, 102, 161, 0.15),
+    0 0 40px rgba(var(--glow-color), 0.1);
+}
+
+.dark .magic-bento-card--border-glow:hover {
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.3),
+    0 0 40px rgba(var(--glow-color), 0.2);
+}
+
+.particle-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.particle::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: rgba(var(--glow-color), 0.2);
+  border-radius: 50%;
+  z-index: -1;
+}
+
+.particle-container:hover {
+  box-shadow:
+    0 8px 25px rgba(0, 102, 161, 0.1),
+    0 0 30px rgba(var(--glow-color), 0.1);
+}
+
+/* Global spotlight styles */
+.global-spotlight {
+  mix-blend-mode: screen;
+  will-change: transform, opacity;
+  z-index: 200 !important;
+  pointer-events: none;
+}
+
+.bento-section {
+  position: relative;
+  user-select: none;
+}
+
+/* Card content styles */
+.magic-bento-card__header {
+  display: flex;
+  position: relative;
+  gap: 0.75rem;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.magic-bento-card__icon {
+  flex-shrink: 0;
+}
+
+.magic-bento-card__content {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.magic-bento-card__title {
+  font-weight: 600;
+  font-size: 1.125rem;
+  margin: 0 0 0.5rem;
+  color: #111827;
+}
+
+.dark .magic-bento-card__title {
+  color: #ffffff;
+}
+
+.magic-bento-card__description {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  opacity: 0.8;
+  color: #4b5563;
+}
+
+.dark .magic-bento-card__description {
+  color: #9ca3af;
+}
+
+/* Text auto-hide for overflow */
+.magic-bento-card--text-autohide .magic-bento-card__title,
+.magic-bento-card--text-autohide .magic-bento-card__description {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.magic-bento-card--text-autohide .magic-bento-card__title {
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+}
+
+.magic-bento-card--text-autohide .magic-bento-card__description {
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+}

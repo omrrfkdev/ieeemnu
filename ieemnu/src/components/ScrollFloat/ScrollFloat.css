@@ -1,0 +1,41 @@
+.scroll-float {
+  overflow: hidden;
+  perspective: 1000px;
+  backface-visibility: hidden;
+}
+
+.scroll-float-text {
+  display: inline-block;
+  font-size: clamp(1.6rem, 8vw, 10rem);
+  font-weight: 900;
+  text-align: center;
+  line-height: 1.5;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+.char {
+  display: inline-block;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  will-change: transform, opacity, filter;
+  transform: translate3d(0, 0, 0);
+}
+
+/* Dim variant – add class "scroll-float-dim" to containerClassName */
+.scroll-float-dim .char {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* Add smooth text rendering */
+.scroll-float-text {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Hardware acceleration for smoother animations */
+.char {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
